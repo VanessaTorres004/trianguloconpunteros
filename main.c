@@ -54,13 +54,20 @@ float calcularDistancias(float x1, float y1, float z1, float x2, float y2, float
 		float areaSuperficial=areabase+area1+area2+area3;
 		return areaSuperficial;
 		}
+void calcularBaricentro(float puntos[4][3], float baricentro[3]){
+    baricentro[0] = (puntos[0][0] + puntos[1][0] + puntos[2][0]) / 3;
+    baricentro[1] = (puntos[0][1] + puntos[1][1] + puntos[2][1]) / 3;
+    baricentro[2] = (puntos[0][2] + puntos[1][2] + puntos[2][2]) / 3;
+}
+
+float calcularVolumen(float a, float b, float c, float puntos[4][3]){
+    float areabase = calcularArea(a, b, c);
+    float baricentro[3];
+    calcularBaricentro(puntos, baricentro);
+    float altura = calcularDistancias(baricentro[0], baricentro[1], baricentro[2], puntos[3][0], puntos[3][1], puntos[3][2]);
+    float volumen = (areabase * altura) / 3;
+    return volumen;
+}
 		
-		float calcularVolumen(float a, float b, float c, float d, float e, float f){
-			float areabase = (a,b,c);
-			float altura =(a,e,d) ;
-			float volumen =(3.14*pow(areabase,2)*altura)/3;
-			return volumen;
-			
-		}
 			
 			
